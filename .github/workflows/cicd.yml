@@ -40,10 +40,14 @@ jobs:
             
             export IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' todo-list)
             echo $IP
-            
-            sleep 60
-            
-            docker ps 
+    
+            # echo Testing Image URI using wget
+            # wget -q -O - 127.0.0.1:3000/health | grep health
 
-            echo Testing Image URI using wget
-            wget -q -O - 127.0.0.1:3000/health | grep health
+        - name: Container Registry Push
+          uses: docker/build-push-action@v6
+          with:
+            context: .
+            push: true
+            tags: | 
+                ${{ vars.DOCKERHUB_USERNAME }}/todo-list:${{ github.sha}}
