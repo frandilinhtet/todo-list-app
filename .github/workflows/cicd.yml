@@ -40,6 +40,8 @@ jobs:
             
             export IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' todo-list)
             echo $IP
+            
+            docker ps 
 
             echo Testing Image URI using wget
             wget -q -O - 127.0.0.1:3000/health | grep health
