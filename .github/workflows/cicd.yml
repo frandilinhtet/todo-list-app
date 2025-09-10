@@ -11,7 +11,7 @@ env:
 
 jobs:
     CI-Stage:
-        name: Checkout Code
+        name: CI Stage
         runs-on: ubuntu-latest
         permissions:
             packages: write
