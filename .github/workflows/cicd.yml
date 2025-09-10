@@ -41,6 +41,8 @@ jobs:
             export IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' todo-list)
             echo $IP
             
+            sleep 60
+            
             docker ps 
 
             echo Testing Image URI using wget
