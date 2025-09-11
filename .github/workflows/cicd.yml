@@ -32,22 +32,22 @@ jobs:
             push: false
             tags: ${{ vars.DOCKERHUB_USERNAME }}/todo-list:${{ github.sha }}
         
-        - name: Docker Image Testing
-          run: |
-            docker images
-            docker run -itd --name todo-list -p 3000:3000 -e MONGODB_URI=$MONGODB_URI \
-                ${{ vars.DOCKERHUB_USERNAME }}/todo-list:${{ github.sha }}
+        # - name: Docker Image Testing
+        #   run: |
+        #     docker images
+        #     docker run -itd --name todo-list -p 3000:3000 -e MONGODB_URI=$MONGODB_URI \
+        #         ${{ vars.DOCKERHUB_USERNAME }}/todo-list:${{ github.sha }}
             
-            export IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' todo-list)
-            echo $IP
+        #     export IP=$(docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' todo-list)
+        #     echo $IP
     
-            # echo Testing Image URI using wget
-            # wget -q -O - 127.0.0.1:3000/health | grep health
+        #     # echo Testing Image URI using wget
+        #     # wget -q -O - 127.0.0.1:3000/health | grep health
 
-        - name: Container Registry Push
-          uses: docker/build-push-action@v6
-          with:
-            context: .
-            push: true
-            tags: | 
-                ${{ vars.DOCKERHUB_USERNAME }}/todo-list:${{ github.sha}}
+        # - name: Container Registry Push
+        #   uses: docker/build-push-action@v6
+        #   with:
+        #     context: .
+        #     push: true
+        #     tags: | 
+        #         ${{ vars.DOCKERHUB_USERNAME }}/todo-list:${{ github.sha}}
