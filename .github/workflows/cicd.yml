@@ -44,10 +44,10 @@ jobs:
         #     # echo Testing Image URI using wget
         #     # wget -q -O - 127.0.0.1:3000/health | grep health
 
-        # - name: Container Registry Push
-        #   uses: docker/build-push-action@v6
-        #   with:
-        #     context: .
-        #     push: true
-        #     tags: | 
-        #         ${{ vars.DOCKERHUB_USERNAME }}/todo-list:${{ github.sha}}
+        - name: Container Registry Push
+          uses: docker/build-push-action@v6
+          with:
+            context: .
+            push: true
+            tags: | 
+                ${{ vars.DOCKERHUB_USERNAME }}/todo-list:${{ github.sha}}
