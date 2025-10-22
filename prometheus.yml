@@ -1,0 +1,18 @@
+global:
+  scrape_interval: 5s
+
+scrape_configs:
+  # Monitor cAdvisor (container metrics)
+  - job_name: "cadvisor"
+    static_configs:
+      - targets: ["cadvisor:8080"]
+
+  # Monitor Node.js app (if you expose metrics)
+  - job_name: "node-app"
+    static_configs:
+      - targets: ["todo-app:3000"]
+
+  # Monitor MongoDB (via exporter)
+  - job_name: "mongodb-exporter"
+    static_configs:
+      - targets: ["mongodb-exporter:9216"]
